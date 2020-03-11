@@ -211,6 +211,7 @@
               -->
               <!-- END comment-list -->
               
+              <!--
               <div class="comments">
                 <h3 class="mb-5">Comments</h3>
 
@@ -218,7 +219,10 @@
               </div>
 
               <div id="comments-container"></div>
+              -->
             
+              <div class="comments"></div>
+
               <h3>Leave a comment</h3>
 
               <form id="comment">
@@ -452,7 +456,7 @@
       https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
 
-  <!--
+  
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -469,8 +473,9 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   </script>
-  -->
+  
 
+  <!--
   <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  
@@ -481,5 +486,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-xss/0.3.3/xss.min.js"></script>
   <script src="/js/comment.js"></script>
+
+  -->
+
+  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.1.0/js/md5.js"></script>
+  <script src="/js/comment.js"></script>
+
   </body>
 </html>

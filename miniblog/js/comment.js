@@ -1,3 +1,60 @@
+$(function() {
+    
+    
+    
+    var ref = new Firebase("https://perfect-sense-blog-7f989.firebaseio.com/");
+    
+    var firebaseConfig = {
+        apiKey: "AIzaSyCUgInLkvSSPDqkczj7vURBP8tyPBpOVKA",
+        authDomain: "perfect-sense-blog-7f989.firebaseapp.com",
+        databaseURL: "https://perfect-sense-blog-7f989.firebaseio.com",
+        projectId: "perfect-sense-blog-7f989",
+        storageBucket: "perfect-sense-blog-7f989.appspot.com",
+        messagingSenderId: "375104503650",
+        appId: "1:375104503650:web:e45d3c529c919ebfa9b63b",
+        measurementId: "G-0V35D1C7W9"
+    };
+
+
+    var postRef = ref.child(slugify(window.location.pathname));
+
+    postRef.on("child_added", function(snapshot) {
+        var newPost = snapshot.val();
+        $(".comments").prepend('<div class="comment">' +
+        '<h4>' + escapeHtml(newPost.name) + '</h4>' +
+        '<div class="profile-image"><img src="http://www.gravatar.com/avatar/' + escapeHtml(newPost.md5Email) + '?s=100&d=retro"/></div> ' +
+        '' + moment(newPost.postedAt).fromNow() + '<p>' + escapeHtml(newPost.message)  + '</p></div>');
+    });
+
+    $("#comment").submit(function() {
+        postRef.push().set({
+            name: $("#name").val(),
+            message: $("#message").val(),
+            md5Email: md5($("#email").val()),
+            postedAt: Firebase.ServerValue.TIMESTAMP
+        });
+    
+        $("input[type=text], textarea").val("");
+        return false;
+    });
+});
+
+function slugify(text) {
+    return text.toString().toLowerCase().trim()
+    .replace(/&/g, '-and-')
+    .replace(/[\s\W-]+/g, '-')
+    .replace(/[^a-zA-Z0-9-_]+/g,'');
+}
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+    
+
+/*
 $.getScript('https://www.gstatic.com/firebasejs/3.4.0/firebase.js', function () {
     // Initialize Firebase
     var config = {
@@ -49,5 +106,5 @@ $.getScript('https://www.gstatic.com/firebasejs/3.4.0/firebase.js', function () 
         
         $("#comments-container").prepend(html);
     });
+    */
 
-}
