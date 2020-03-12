@@ -1,21 +1,6 @@
 $(function() {
     
-    
-    
-    var ref = new Firebase("https://perfect-sense-blog-7f989.firebaseio.com/");
-    
-    var firebaseConfig = {
-        apiKey: "AIzaSyCUgInLkvSSPDqkczj7vURBP8tyPBpOVKA",
-        authDomain: "perfect-sense-blog-7f989.firebaseapp.com",
-        databaseURL: "https://perfect-sense-blog-7f989.firebaseio.com",
-        projectId: "perfect-sense-blog-7f989",
-        storageBucket: "perfect-sense-blog-7f989.appspot.com",
-        messagingSenderId: "375104503650",
-        appId: "1:375104503650:web:e45d3c529c919ebfa9b63b",
-        measurementId: "G-0V35D1C7W9"
-    };
-
-
+    var ref = new Firebase("https://perfect-sense-blog-7f989.firebaseio.com");
     var postRef = ref.child(slugify(window.location.pathname));
 
     postRef.on("child_added", function(snapshot) {
@@ -33,7 +18,6 @@ $(function() {
             md5Email: md5($("#email").val()),
             postedAt: Firebase.ServerValue.TIMESTAMP
         });
-    
         $("input[type=text], textarea").val("");
         return false;
     });
